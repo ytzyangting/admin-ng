@@ -1,0 +1,8 @@
+spring:
+  resources:
+    static-locations:
+      - "classpath:/app/"
+security:
+  user:
+    name: admin
+    password: admin

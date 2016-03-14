@@ -1,0 +1,9 @@
+/logs
+/target/
+.settings/
+.project
+.classpath
+.springBeans
+/.apt_generated/
+.factoryPath
+/src/main/resources/app/assets/

@@ -1,0 +1,93 @@
+<section class="content-header">
+  <h1>User management</h1>
+  <ol class="breadcrumb">
+    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+    <li><a href="#users">Users</a></li>
+    <li class="active">New user</li>
+  </ol>
+</section>
+
+<section class="content">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title" data-ng-show="user.id == null">New user</h3>
+          <h3 class="box-title" data-ng-show="user.id != null">Edit user</h3>
+        </div>
+        <form class="form-horizontal" name="userForm" onsubmit="return false;" novalidate>
+          <div class="box-body">
+            <div class="form-group" data-ng-class="{'has-error':userForm.username.$error.message}">
+              <label for="username" class="col-sm-2 control-label">Username</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="username" data-ng-model="user.username" data-ng-disabled="user.id != null" placeholder="Username">
+                <label data-ng-show="userForm.username.$error.message" class="control-label" for="username">
+                  <i class="fa fa-times-circle-o"></i> {{userForm.username.$error.message}}
+                </label>
+              </div>
+            </div>
+            <div class="form-group" data-ng-show="user.id == null" data-ng-class="{'has-error':userForm.password.$error.message}">
+              <label for="password" class="col-sm-2 control-label">Password</label>
+              <div class="col-sm-10">
+                <input type="password" class="form-control" name="password" data-ng-model="user.password" placeholder="Password">
+                <label data-ng-show="userForm.password.$error.message" class="control-label" for="password">
+                  <i class="fa fa-times-circle-o"></i> {{userForm.password.$error.message}}
+                </label>
+              </div>
+            </div>
+            <div class="form-group" data-ng-class="{'has-error':userForm.name.$error.message}">
+              <label for="name" class="col-sm-2 control-label">Name</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="name" data-ng-model="user.name" placeholder="Full name">
+                <label data-ng-show="userForm.name.$error.message" class="control-label" for="name">
+                  <i class="fa fa-times-circle-o"></i> {{userForm.name.$error.message}}
+                </label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="role" class="col-sm-2 control-label">Role</label>
+              <div class="col-sm-10">
+                <select class="form-control" name="role" data-ng-model="user.role">
+                  <option>USER</option>
+                  <option>ADMINISTRATOR</option>
+                  <option>SUPER_ADMINISTRATOR</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                  <label>
+                    <input type="checkbox" name="enabled" data-ng-model="user.enabled"> Enabled
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="box-footer">
+            <button type="submit" class="btn btn-default" data-ng-click="cancel()">Cancel</button>
+            <button type="submit" class="btn btn-info pull-right" data-ng-show="user.id == null" data-ng-click="createUser(user)">Create user</button>
+            <button type="submit" class="btn btn-info pull-right" data-ng-show="user.id != null" data-ng-click="updateUser(user)">Save changes</button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="box box-danger" data-ng-show="user.id != null">
+        <div class="box-header with-border">
+          <h3 class="box-title">Delete user</h3>
+        </div>
+        <div class="box-body">
+          <button type="button" class="btn btn-danger pull-right" data-ng-click="deleteUser(user)">Delete this user</button>
+          <p>Once you delete a user, there is no going back. Please be certain.</p>
+        </div>
+      </div>
+    </div> 
+    <div class="col-md-6">
+    </div>
+  </div>
+</section>
