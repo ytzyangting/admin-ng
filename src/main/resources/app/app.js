@@ -3,14 +3,18 @@
 angular.module('myApp', [
   'ngRoute',
   'ngResource',
+  'myApp.dashboard',
   'myApp.users',
   'myApp.view1',
   'myApp.view2',
-  'myApp.version'
 ])
 
+.config(['$locationProvider', function($locationProvider) {
+	$locationProvider.html5Mode(true);
+}])
+
 .config(['$routeProvider', function($routeProvider) {
-	$routeProvider.otherwise({redirectTo: '/view1'});
+	$routeProvider.otherwise({redirectTo: '/ui'});
 }])
 
 .controller('MenuCtrl', ['$scope', function($scope) {

@@ -4,11 +4,11 @@ angular.module('myApp.users', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider
-  	.when('/users', {
+  	.when('/ui/users', {
   		templateUrl: 'users/users.html',
   		controller: 'UsersCtrl'
   	})
-  	.when('/user/:userId?', {
+  	.when('/ui/user/:userId?', {
   		templateUrl: 'users/user.html',
   		controller: 'UserCtrl'
   	});
@@ -46,7 +46,7 @@ angular.module('myApp.users', ['ngRoute'])
 	}
 	
 	$scope.cancel = function() {
-		$location.path('users');
+		$location.path('/ui/users');
 	};
 	
 	$scope.createUser = function(user) {
@@ -56,6 +56,10 @@ angular.module('myApp.users', ['ngRoute'])
 		//user.$save(function(res) {
 		//	$location.path('users');
 		//});
+	};
+	
+	$scope.editUser = function(user) {
+		$location.path('user/' + user.id);
 	};
 	
 	$scope.updateUser = function(user) {

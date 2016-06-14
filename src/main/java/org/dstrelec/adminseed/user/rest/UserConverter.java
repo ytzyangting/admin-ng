@@ -1,4 +1,4 @@
-package org.dstrelec.adminseed.rest.user;
+package org.dstrelec.adminseed.user.rest;
 
 import org.dstrelec.adminseed.user.User;
 import org.springframework.core.convert.converter.Converter;

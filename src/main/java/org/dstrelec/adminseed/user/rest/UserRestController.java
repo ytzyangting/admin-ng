@@ -1,4 +1,4 @@
-package org.dstrelec.adminseed.rest.user;
+package org.dstrelec.adminseed.user.rest;
 
 import java.util.List;
 import java.util.stream.Collectors;

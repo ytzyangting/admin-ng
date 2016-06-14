@@ -6,14 +6,15 @@
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <base href="/" />
     <title>AdminSeed</title>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport"/>
-    <link rel="stylesheet" href="assets/admin-lte/bootstrap/css/bootstrap.min.css"/>
+    <link rel="stylesheet" th:href="@{/assets/admin-lte/bootstrap/css/bootstrap.min.css}"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"/>
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"/>
-    <link rel="stylesheet" href="assets/admin-lte/dist/css/AdminLTE.min.css"/>
-    <link rel="stylesheet" href="assets/admin-lte/dist/css/skins/skin-blue.min.css"/>
-    <link rel="stylesheet" href="app.css"></link>
+    <link rel="stylesheet" th:href="@{/assets/admin-lte/dist/css/AdminLTE.min.css}"/>
+    <link rel="stylesheet" th:href="@{/assets/admin-lte/dist/css/skins/skin-blue.min.css}"/>
+    <link rel="stylesheet" th:href="@{/app.css}"></link>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -87,16 +88,16 @@
           </form>
           <ul class="sidebar-menu">
             <li class="header">MAIN NAVIGATION</li>
-            <li><a href="#"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
-            <li><a href="#users"><i class="fa fa-users"></i> <span>Users</span></a></li>
+            <li><a href="/ui"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+            <li><a href="/ui/users"><i class="fa fa-users"></i> <span>Users</span></a></li>
             <li class="treeview active">
               <a href="#">
                 <i class="fa fa-folder"></i> <span>Views</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li data-ng-class="{active:isSelected(1)}"><a href="#view1" data-ng-click="selectItem(1)"><i class="fa fa-circle-o"></i> View 1</a></li>
-                <li data-ng-class="{active:isSelected(2)}"><a href="#view2" data-ng-click="selectItem(2)"><i class="fa fa-circle-o"></i> View 2</a></li>
+                <li data-ng-class="{active:isSelected(1)}"><a href="/ui/view1" data-ng-click="selectItem(1)"><i class="fa fa-circle-o"></i> View 1</a></li>
+                <li data-ng-class="{active:isSelected(2)}"><a href="/ui/view2" data-ng-click="selectItem(2)"><i class="fa fa-circle-o"></i> View 2</a></li>
               </ul>
             </li>
           </ul>
@@ -140,20 +141,18 @@
 
     </div>
 
-    <script src="assets/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js"></script>
-    <script src="assets/admin-lte/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js"></script>
-    <script src="assets/admin-lte/plugins/fastclick/fastclick.min.js"></script>
-    <script src="assets/admin-lte/dist/js/app.min.js"></script>
-    <script src="assets/angular/angular.js"></script>
-    <script src="assets/angular-route/angular-route.js"></script>
-    <script src="assets/angular-resource/angular-resource.js"></script>
-    <script src="app.js"></script>
-    <script src="users/users.js"></script>
-    <script src="view1/view1.js"></script>
-    <script src="view2/view2.js"></script>
-    <script src="components/version/version.js"></script>
-    <script src="components/version/version-directive.js"></script>
-    <script src="components/version/interpolate-filter.js"></script>
+    <script th:src="@{/assets/admin-lte/plugins/jQuery/jQuery-2.1.4.min.js}"></script>
+    <script th:src="@{/assets/admin-lte/bootstrap/js/bootstrap.min.js}"></script>
+    <script th:src="@{/assets/admin-lte/plugins/slimScroll/jquery.slimscroll.min.js}"></script>
+    <script th:src="@{/assets/admin-lte/plugins/fastclick/fastclick.min.js}"></script>
+    <script th:src="@{/assets/admin-lte/dist/js/app.min.js}"></script>
+    <script th:src="@{/assets/angular/angular.js}"></script>
+    <script th:src="@{/assets/angular-route/angular-route.js}"></script>
+    <script th:src="@{/assets/angular-resource/angular-resource.js}"></script>
+    <script th:src="@{/app.js}"></script>
+    <script th:src="@{/dashboard/dashboard.js}"></script>
+    <script th:src="@{/users/users.js}"></script>
+    <script th:src="@{/view1/view1.js}"></script>
+    <script th:src="@{/view2/view2.js}"></script>
   </body>
 </html>
