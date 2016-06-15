@@ -1,11 +1,11 @@
 package org.dstrelec.adminseed.user.rest;
 
 import org.dstrelec.adminseed.user.User;
-import org.springframework.core.convert.converter.Converter;
+import org.dstrelec.core.rest.ResourceConverter;
 import org.springframework.stereotype.Component;
 
 @Component
-public class UserConverter implements Converter<User, UserResource> {
+public class UserConverter implements ResourceConverter<User, UserResource> {
 
 	@Override
 	public UserResource convert(User user) {

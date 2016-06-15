@@ -32,16 +32,14 @@ angular.module('myApp.users', ['ngRoute'])
 
 .controller('UserCtrl', ['$scope', '$location', '$parse', '$routeParams', 'User', function($scope, $location, $parse, $routeParams, User) {
 	
-	if ($routeParams.userId == null) {
-		$scope.user = new User({
-			name: null,
-			username: null,
-			role: "USER",
-			enabled: true
-		});
-	} else {
+	if ($routeParams.userId) {
 		$scope.user = User.get({
 			id: $routeParams.userId
+		});
+	} else {
+		$scope.user = new User({
+			role: "USER",
+			enabled: true
 		});
 	}
 	
@@ -49,21 +47,26 @@ angular.module('myApp.users', ['ngRoute'])
 		$location.path('/ui/users');
 	};
 	
-	$scope.createUser = function(user) {
-		$scope.userForm.$setValidity('username', false, $scope.userForm);
-		var serverMessage = $parse('userForm.username.$error.message');
-		serverMessage.assign($scope, 'This is a error message.');
-		//user.$save(function(res) {
-		//	$location.path('users');
-		//});
-	};
-	
-	$scope.editUser = function(user) {
-		$location.path('user/' + user.id);
-	};
-	
-	$scope.updateUser = function(user) {
-		
+	$scope.saveUser = function() {
+		if ($routeParams.userId) {
+			User.update($scope.user, success, failure);
+		} else {
+			User.save($scope.user, success, failure);
+		}
+
+		function success(response) {
+			$location.path('/ui/users');
+		}
+
+		function failure(response) {
+			console.log('failure', response);
+			
+			angular.forEach(response.data.fields, function(message, field) {
+				$scope.userForm.$setValidity(field, false, $scope.userForm);
+				var serverMessage = $parse('userForm.' + field + '.$error.message');
+				serverMessage.assign($scope, message);
+			});
+		}
 	};
 	
 	$scope.deleteUser = function(user) {

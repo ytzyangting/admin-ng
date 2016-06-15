@@ -1,53 +1,52 @@
 package org.dstrelec.adminseed.user.rest;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.dstrelec.adminseed.user.User;
 import org.dstrelec.adminseed.user.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.dstrelec.core.rest.ResourceNotFoundException;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/users")
-public class UserRestController {
+public class UserController {
 
 	private UserRepository userRepository;
 	
 	private UserConverter userConverter;
 	
-	@Autowired
-	public UserRestController(UserRepository userRepository, UserConverter userConverter) {
+	public UserController(UserRepository userRepository, UserConverter userConverter) {
 		this.userRepository = userRepository;
 		this.userConverter = userConverter;
 	}
 	
-	@RequestMapping(method = RequestMethod.GET)
+	@GetMapping
 	public List<UserResource> getUsers() {
-		return userRepository.findAll().stream()
-				.map(user -> userConverter.convert(user))
-				.collect(Collectors.toList());
+		return userConverter.convertList(userRepository.findAll());
 	}
 	
-	@RequestMapping(value = "/{userId}", method = RequestMethod.GET)
+	@GetMapping("/{userId}")
 	public UserResource getUser(@PathVariable int userId) {
 		User user = userRepository.findOne(userId);
-		if (user != null) {
-			return userConverter.convert(user);
+		if (user == null) {
+			throw new ResourceNotFoundException("User not found.");
 		}
 		
-		return null;
+		return userConverter.convert(user);
 	}
 	
-	@RequestMapping(method = RequestMethod.POST)
+	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public UserResource createUser(@RequestBody UserResource res) {
+	public UserResource createUser(@Validated @RequestBody UserResource res) {
 		User user = new User();
 		user.setName(res.getName());
 		user.setUsername(res.getUsername());
@@ -60,12 +59,12 @@ public class UserRestController {
 		return userConverter.convert(user);
 	}
 	
-	@RequestMapping(value = "/{userId}", method = RequestMethod.PUT)
+	@PutMapping("/{userId}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
-	public UserResource updateUser(@PathVariable int userId, @RequestBody UserResource res) {
+	public UserResource updateUser(@PathVariable int userId, @Validated @RequestBody UserResource res) {
 		User user = userRepository.findOne(userId);
 		if (user == null) {
-			//TODO throw not found exception
+			throw new ResourceNotFoundException("User not found.");
 		}
 		
 		user.setName(res.getName());
