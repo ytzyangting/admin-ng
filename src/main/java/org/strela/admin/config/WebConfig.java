@@ -1,15 +1,15 @@
-package org.dstrelec.adminseed.config;
+package org.strela.admin.config;
 
 import java.util.Set;
 
-import org.dstrelec.core.rest.CompositeResourceValidator;
-import org.dstrelec.core.rest.ResourceValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.validation.Validator;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.strela.core.rest.CompositeResourceValidator;
+import org.strela.core.rest.ResourceValidator;
 
 @Configuration
 public class WebConfig extends WebMvcConfigurerAdapter {

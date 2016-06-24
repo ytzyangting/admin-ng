@@ -1,8 +1,8 @@
-package org.dstrelec.adminseed.user.rest;
+package org.strela.admin.user.rest;
 
-import org.dstrelec.adminseed.user.User;
-import org.dstrelec.core.rest.ResourceConverter;
 import org.springframework.stereotype.Component;
+import org.strela.admin.user.User;
+import org.strela.core.rest.ResourceConverter;
 
 @Component
 public class UserConverter implements ResourceConverter<User, UserResource> {

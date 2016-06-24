@@ -1,4 +1,4 @@
-package org.dstrelec.core.rest;
+package org.strela.core.rest;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,17 +1,17 @@
-package org.dstrelec.adminseed;
+package org.strela.admin;
 
-import org.dstrelec.core.rest.ErrorResource;
-import org.dstrelec.core.rest.ErrorResourceBuilder;
-import org.dstrelec.core.rest.ResourceNotFoundException;
-import org.dstrelec.core.rest.ResourceValidationException;
-import org.dstrelec.core.rest.annotation.RestControllerAdvice;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.strela.core.rest.ErrorResource;
+import org.strela.core.rest.ErrorResourceBuilder;
+import org.strela.core.rest.ResourceNotFoundException;
+import org.strela.core.rest.ResourceValidationException;
+import org.strela.core.rest.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
-public class AdminSeedControllerAdvice {
+public class AdminRestControllerAdvice {
 
 	@ExceptionHandler({MethodArgumentNotValidException.class, ResourceValidationException.class})
 	@ResponseStatus(HttpStatus.BAD_REQUEST)

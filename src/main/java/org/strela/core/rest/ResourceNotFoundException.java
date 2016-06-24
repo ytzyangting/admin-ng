@@ -1,4 +1,4 @@
-package org.dstrelec.core.rest;
+package org.strela.core.rest;
 
 public class ResourceNotFoundException extends RuntimeException {
 	

@@ -1,4 +1,4 @@
-package org.dstrelec.core.rest;
+package org.strela.core.rest;
 
 import org.springframework.core.ResolvableType;
 import org.springframework.validation.Errors;

@@ -1,4 +1,4 @@
-package org.dstrelec.core.rest.annotation;
+package org.strela.core.rest.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

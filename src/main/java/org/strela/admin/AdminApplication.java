@@ -1,21 +1,21 @@
-package org.dstrelec.adminseed;
+package org.strela.admin;
 
-import org.dstrelec.adminseed.user.User;
-import org.dstrelec.adminseed.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.strela.admin.user.User;
+import org.strela.admin.user.UserRepository;
 
 @SpringBootApplication
-public class AdminSeedApplication {
+public class AdminApplication {
 
 	@Autowired
 	private UserRepository userRepository;
 	
 	public static void main(String[] args) {
-		SpringApplication.run(AdminSeedApplication.class, args);
+		SpringApplication.run(AdminApplication.class, args);
 	}
 	
 	@Bean

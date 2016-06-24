@@ -1,4 +1,4 @@
-package org.dstrelec.adminseed.user;
+package org.strela.admin.user;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

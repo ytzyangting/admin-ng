@@ -1,4 +1,4 @@
-package org.dstrelec.adminseed.user.rest;
+package org.strela.admin.user.rest;
 
 public class UserResource {
 	
