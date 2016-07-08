@@ -23,7 +23,7 @@
           </tr>
           <tr data-ng-repeat="user in users">
             <td>
-              <a href="/ui/user/{{user.id}}" data-ng-click="editUser(user)">{{user.name}}</a>
+              <a href="/ui/user/{{user.id}}">{{user.name}}</a>
               <span class="label label-danger" data-ng-show="{{!user.enabled}}">Disabled</span>
             </td>
             <td>{{user.role}}</td>
@@ -31,13 +31,7 @@
         </table>
       </div>
       <div class="box-footer clearfix">
-        <ul class="pagination pagination-sm no-margin pull-right">
-          <li><a href="#">&laquo;</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><a href="#">3</a></li>
-          <li><a href="#">&raquo;</a></li>
-        </ul>
+      	<uib-pagination ng-model="currentPage" total-items="totalItems" ng-change="pageChanged()" class="pagination-sm no-margin pull-right"></uib-pagination>
       </div>
     </div>
   </div>

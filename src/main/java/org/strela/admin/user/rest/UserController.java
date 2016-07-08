@@ -1,7 +1,7 @@
 package org.strela.admin.user.rest;
 
-import java.util.List;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,35 +13,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.strela.admin.user.User;
-import org.strela.admin.user.UserRepository;
-import org.strela.core.rest.ResourceNotFoundException;
+import org.strela.admin.user.UserService;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
-	private UserRepository userRepository;
+	private UserService userService;
 	
 	private UserConverter userConverter;
 	
-	public UserController(UserRepository userRepository, UserConverter userConverter) {
-		this.userRepository = userRepository;
+	public UserController(UserService userService, UserConverter userConverter) {
+		this.userService = userService;
 		this.userConverter = userConverter;
 	}
 	
 	@GetMapping
-	public List<UserResource> getUsers() {
-		return userConverter.convertList(userRepository.findAll());
+	public Page<UserResource> getUsers(Pageable pageable) {
+		return userConverter.convertPage(userService.getUsers(pageable));
 	}
 	
 	@GetMapping("/{userId}")
 	public UserResource getUser(@PathVariable int userId) {
-		User user = userRepository.findOne(userId);
-		if (user == null) {
-			throw new ResourceNotFoundException("User not found.");
-		}
-		
-		return userConverter.convert(user);
+		return userConverter.convert(userService.getUser(userId));
 	}
 	
 	@PostMapping
@@ -54,7 +48,7 @@ public class UserController {
 		user.setRole(res.getRole());
 		user.setEnabled(res.isEnabled());
 		
-		user = userRepository.save(user);
+		user = userService.createUser(user);
 		
 		return userConverter.convert(user);
 	}
@@ -62,16 +56,12 @@ public class UserController {
 	@PutMapping("/{userId}")
 	@ResponseStatus(HttpStatus.ACCEPTED)
 	public UserResource updateUser(@PathVariable int userId, @Validated @RequestBody UserResource res) {
-		User user = userRepository.findOne(userId);
-		if (user == null) {
-			throw new ResourceNotFoundException("User not found.");
-		}
-		
+		User user = userService.getUser(userId);
 		user.setName(res.getName());
 		user.setRole(res.getRole());
 		user.setEnabled(res.isEnabled());
 		
-		user = userRepository.save(user);
+		user = userService.updateUser(user);
 		
 		return userConverter.convert(user);
 	}

@@ -70,8 +70,6 @@ public class ErrorResourceBuilder {
 	public static ErrorResourceBuilder fromException(Exception e) {
 		if (e instanceof MethodArgumentNotValidException) {
 			return fromErrors(((MethodArgumentNotValidException) e).getBindingResult());
-		} else if (e instanceof ResourceValidationException) {
-			return fromErrors(((ResourceValidationException) e).getErrors());
 		}
 		
 		return fromMessage(e.getMessage());

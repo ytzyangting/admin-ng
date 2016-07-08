@@ -41,6 +41,17 @@ public class AdminApplication {
 				johnSmith.setEnabled(false);
 				
 				userRepository.save(johnSmith);
+				
+				for (int i = 0; i < 40; i++) {
+					User user = new User();
+					user.setName("User " + i);
+					user.setUsername("user" + i);
+					user.setPassword("user" + i);
+					user.setRole("USER");
+					user.setEnabled(true);
+					
+					userRepository.save(user);
+				}
 			}
 		};
 	}
